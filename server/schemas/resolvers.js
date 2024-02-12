@@ -1,5 +1,5 @@
-const { User } = require('../models');
-const { signToken, AuthenticationError } = require('../utils/auth');
+const { User } = require("../models");
+const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -32,7 +32,7 @@ const resolvers = {
       return { token, user };
     },
 
-    saveBook: async (parent, {book, id }) => {
+    saveBook: async (parent, { book, id }) => {
       return User.findOneAndUpdate(
         { _id: id },
         {
@@ -48,7 +48,7 @@ const resolvers = {
     removeBook: async (parent, { bookId, userId }) => {
       return User.findOneAndUpdate(
         { _id: userId },
-        { $pull: { savedBooks: {bookId} }},
+        { $pull: { savedBooks: { bookId } } },
         { new: true }
       );
     },
